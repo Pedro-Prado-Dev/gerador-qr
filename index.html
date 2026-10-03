@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerador de QR</title>
+    <meta
+      name="description"
+      content="Cole um link e baixe o QR code. Nada é enviado para um servidor."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="panel">
+        <p class="eyebrow">No celular ou no computador</p>
+        <h1>Gerador de QR</h1>
+        <p class="lead">
+          Cole um link, veja o código na hora e baixe a imagem. O QR é criado
+          neste aparelho: o endereço não vai para nenhum servidor.
+        </p>
+
+        <form id="form" autocomplete="off">
+          <label for="link">Link</label>
+          <input
+            id="link"
+            name="link"
+            type="text"
+            inputmode="url"
+            placeholder="https://exemplo.com"
+            spellcheck="false"
+            required
+          />
+
+          <fieldset>
+            <legend>Cor do código</legend>
+            <div class="swatches" role="radiogroup" aria-label="Cor do código">
+              <label class="swatch">
+                <input type="radio" name="color" value="#1c1917" checked />
+                <span style="--swatch: #1c1917"></span>
+                Preto
+              </label>
+              <label class="swatch">
+                <input type="radio" name="color" value="#9f1239" />
+                <span style="--swatch: #9f1239"></span>
+                Vinho
+              </label>
+              <label class="swatch">
+                <input type="radio" name="color" value="#1d4ed8" />
+                <span style="--swatch: #1d4ed8"></span>
+                Azul
+              </label>
+              <label class="swatch">
+                <input type="radio" name="color" value="#047857" />
+                <span style="--swatch: #047857"></span>
+                Verde
+              </label>
+            </div>
+          </fieldset>
+
+          <label for="size">Tamanho da imagem: <span id="size-value">512</span> px</label>
+          <input id="size" name="size" type="range" min="256" max="1024" step="64" value="512" />
+
+          <p id="message" class="message" role="status" aria-live="polite"></p>
+
+          <div class="actions">
+            <button id="download" type="button" disabled>Baixar PNG</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="preview" aria-live="polite">
+        <div class="frame">
+          <canvas id="qr" width="280" height="280" hidden></canvas>
+          <p id="placeholder" class="placeholder">O QR aparece aqui</p>
+        </div>
+        <p id="encoded" class="encoded" hidden></p>
+      </section>
+    </main>
+    <script src="qrcode.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
